@@ -1,0 +1,12 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    awesome_print (1.6.1)
+    trollop (2.1.2)
+
+PLATFORMS
+  x64-mingw32
+
+DEPENDENCIES
+  awesome_print
+  trollop
