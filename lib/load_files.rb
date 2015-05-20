@@ -33,6 +33,17 @@ class LoadFiles
     @churn ||= week_before_last - (week_before_last & last_week_returning)
   end
 
+  def rez
+    @rez ||= (old_weeks_new - week_before_last) & last_week_returning
+  end
+
+  def return_first_week
+    @return_first_week ||= (last_week_new & last_week_returning).compact.uniq
+  end
+
+  def total_weekly_users
+    @total_weekly_users ||= last_week_new + (last_week_returning - return_first_week)
+  end
 
   private
  
@@ -40,15 +51,8 @@ class LoadFiles
 	  CSV.read(path).flat_map {|c| c[1]}.drop(1).compact.uniq  #this reads the csv file and pulls out the second column and gets rid of the headers
   end
   
-  def load_directory path # loads the old_weeks_new directory
-  	Dir.glob(path).flat_map {|f| load_csv f}.compact.uniq
+  def load_directory path # loads the old_weeks_new directory, puts them all in a single csv file
+  	Dir.glob(path).flat_map {|f| load_csv f}.drop(1).compact.uniq
   end
 end
 
-
-
-
-  #  def Resurrected
-  # 	res = (old_weeks_new - week_before_last) & last_week_returning
-  # 	res = res.count
-  # end
