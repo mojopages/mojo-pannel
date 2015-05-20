@@ -16,4 +16,8 @@ end
 
 trap("INT") { exit }
 
-LoadFiles.new(opts)
+files = LoadFiles.new(opts)
+ap files.last_week_new
+ap files.last_week_returning
+ap files.week_before_last_new
+ap files.week_before_last_returning
