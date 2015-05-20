@@ -13,4 +13,8 @@ week_before_last_returning Folder ==> Contains csv datafiles of fingerprints fro
 old_weeks_new Folder ==> Contains csv datafiles of fingerprints from all weeks before the week before last.  Files are list of new users per each week.  File name is wkXX_t.csv, where XX is the week-of-the-year number
 old_weeks_returning Folder ==> Contains csv datafiles of fingerprints from all weeks before the week before last.  Files are list of returning users per each week.  **Not sure if this is needed**.  File name is wkXX_f.csv, where XX is the week-of-the-year number
 
+For all CSV files the fingerprints are located in column "B", and have the header of "Top 50000000 fingerprint.raw"
+
+
+
 

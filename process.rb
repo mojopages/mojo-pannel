@@ -19,3 +19,4 @@ trap("INT") { exit }
 files = LoadFiles.new(opts)
 ap "New users last week: " + files.last_week_new.count.to_s
 ap "Returning users last week: " + files.last_week_returning.count.to_s
+ap "Churn: " + files.churn.count.to_s #to_s to save it as a string
