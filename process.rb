@@ -17,8 +17,5 @@ end
 trap("INT") { exit }
 
 files = LoadFiles.new(opts)
-ap files.last_week_new.count
-ap files.last_week_returning.count
-ap files.week_before_last_new.count
-ap files.week_before_last_returning.count
-ap files.old_weeks_new.count
+ap "New users last week: " + files.last_week_new.count.to_s
+ap "Returning users last week: " + files.last_week_returning.count.to_s
