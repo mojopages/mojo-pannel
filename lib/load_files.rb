@@ -21,12 +21,23 @@ class LoadFiles
  	@week_before_last_returning ||= load_csv @options[:week_before_last_returning] 
   end
 
+  def old_weeks_new
+  	@old_weeks_new ||= load_directory @options[:old_weeks_new]
+  end
+  
   private
  
   def load_csv path 
 	CSV.read(path).flat_map {|c| c[1]}.drop(1)  #this reads the csv file and pulls out the second column and gets rid of the headers
   end
+  
+  def load_directory path # loads the old_weeks_new directory
+  	Dir.glob(path).flat_map {|f| load_csv f}.compact.uniq
+  end
 end
+
+
+
 
 
   # def Churn
