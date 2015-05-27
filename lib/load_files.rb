@@ -48,10 +48,13 @@ class LoadFiles
   
   private
  
-  def load_csv path 
-	  CSV.read(path).flat_map {|c| c[1]}.drop(1).compact.uniq  #this reads the csv file and pulls out the second column and gets rid of the headers
+  def load_csv path
+    csv = CSV.read(path).drop(1)
+    initial_hash = csv.map {|c| c[1] }.compact.uniq.map {|c| { c => [] } }.reduce({}, :merge)
+    csv.each {|c| initial_hash[c[1]] << c[2] }
+    initial_hash.delete_if {|k,v| v.count > 3 }.keys
   end
-
+  
   def load_file path # loads csv file
     load_csv Dir.glob(path).first
   end
