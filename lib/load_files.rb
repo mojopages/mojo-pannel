@@ -45,6 +45,7 @@ class LoadFiles
     @total_weekly_users ||= last_week_new + (last_week_returning - return_first_week)
   end
 
+  
   private
  
   def load_csv path 

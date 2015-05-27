@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     awesome_print (1.6.1)
+    geoip (1.5.0)
     trollop (2.1.2)
 
 PLATFORMS
@@ -9,4 +10,5 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  geoip
   trollop
