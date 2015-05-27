@@ -6,23 +6,23 @@ class LoadFiles
   end
   
   def last_week_new
- 	@last_week_new ||= load_csv @options[:last_week_new] #this method sets up a variable from the csv file, and keeps it so it doesn't load each time
+ 	@last_week_new ||= load_file @options[:last_week_new] #this method sets up a variable from the csv file, and keeps it so it doesn't load each time
   end
 
   def last_week_returning
- 	@last_week_returning ||= load_csv @options[:last_week_returning] 
+ 	@last_week_returning ||= load_file @options[:last_week_returning] 
   end
 
   def week_before_last_new
- 	@week_before_last_new ||= load_csv @options[:week_before_last_new] 
+ 	@week_before_last_new ||= load_file @options[:week_before_last_new] 
   end
 
   def week_before_last_returning
- 	@week_before_last_returning ||= load_csv @options[:week_before_last_returning] 
+ 	@week_before_last_returning ||= load_file @options[:week_before_last_returning] 
   end
 
   def old_weeks_new
-  	@old_weeks_new ||= load_directory @options[:old_weeks_new]
+  	@old_weeks_new ||= load_files @options[:old_weeks_new]
   end
   
   def week_before_last
@@ -51,8 +51,12 @@ class LoadFiles
   def load_csv path 
 	  CSV.read(path).flat_map {|c| c[1]}.drop(1).compact.uniq  #this reads the csv file and pulls out the second column and gets rid of the headers
   end
+
+  def load_file path # loads csv file
+    load_csv Dir.glob(path).first
+  end
   
-  def load_directory path # loads the old_weeks_new directory, puts them all in a single csv file
+  def load_files path # loads the old_weeks_new directory, puts them all in a single csv file
   	Dir.glob(path).flat_map {|f| load_csv f}.drop(1).compact.uniq
   end
 end
